@@ -1,9 +1,7 @@
 import sounddevice as sd
 import soundfile as sf
-import numpy as np
 import os
 from datetime import datetime
-import time # Only for a small delay if desired, not strictly needed for blocking rec
 
 # --- Configuration ---
 DEFAULT_OUTPUT_FOLDER = "audio_recordings"
@@ -140,6 +138,12 @@ def record_audio_chunks(
                 print("This might be due to issues with the audio device or configuration.")
                 print("Please check your microphone and audio settings.")
                 break # Exit the loop on PortAudio error
+
+            except KeyboardInterrupt:
+                print("\nRecording stopped by user.")
+                sf.write(file_path, recording, sample_rate_hz, subtype=subtype)
+                print(f"Recording chunk stoped by user -  {chunk_count}. Saving to {file_path}...")
+
             except Exception as e:
                 print(f"An unexpected error occurred during recording: {e}")
                 break
@@ -161,8 +165,7 @@ def record_audio_chunks(
             # but blocking recording already paces the loop.
             # time.sleep(0.1)
 
-    except KeyboardInterrupt:
-        print("\nRecording stopped by user.")
+
     except Exception as e:
         print(f"\nAn unexpected error occurred: {e}")
     finally:
@@ -179,7 +182,7 @@ if __name__ == "__main__":
     
     # You can customize parameters here:
     custom_output_folder = "my_audio_sessions"
-    custom_chunk_duration = 10  # seconds
+    custom_chunk_duration = 60*5  # seconds
     custom_sample_rate = 48000  # Hz
     custom_channels = 1         # Mono
     custom_filename_prefix = "sessionX_chunk_"

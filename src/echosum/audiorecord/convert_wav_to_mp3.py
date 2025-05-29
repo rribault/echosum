@@ -140,9 +140,9 @@ if __name__ == "__main__":
     # Create a dummy WAV file for testing (if you don't have one readily available)
     # This requires numpy and scipy for the dummy WAV creation part.
     # If you ran the previous microphone recording script, you'll have WAV files.
-    dummy_wav_dir = "dummy_wavs_for_conversion"
+    dummy_wav_dir = "audio_recordings"
     os.makedirs(dummy_wav_dir, exist_ok=True)
-    dummy_wav_path = os.path.join(dummy_wav_dir, "test_voice.wav")
+    dummy_wav_path = os.path.join(dummy_wav_dir, "rec_20250525_200001_228.wav")
 
     try:
         import numpy as np
