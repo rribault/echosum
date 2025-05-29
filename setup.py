@@ -7,7 +7,7 @@ setup(
     author='Romain Ribault',
     author_email='rribault@gmail.com',
     license='GNU',
-    install_requires=['sounddevice', 'soundfile', 'numpy', 'pytest', 'pydub', 'shiny', 'scipy', 'openai', 'watchdog'],
+    install_requires=['sounddevice', 'soundfile', 'numpy', 'pytest', 'pydub', 'shiny', 'scipy', 'openai', 'watchdog', 'ffmpeg'],
     python_requires='>=3.11',
     packages=find_packages(where='src'),
     package_dir={'': 'src'}
